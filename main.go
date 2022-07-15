@@ -8,11 +8,11 @@ import (
 
 func main() {
 
-	account, err := entities.CreateNewAccount("João", "33344455566", "Efr2", 45.0)
+	account, err := entities.NewAccount("João", "33344455566", "Efr2", 45.0)
 	if err != nil {
 		fmt.Printf("Erro ao criar nova conta: %v", err)
 	} else {
-		fmt.Println("Conta: ", account.Id)
+		fmt.Println("Conta: ", account.ID)
 		fmt.Println("Criada em : ", account.CreatedAt)
 		fmt.Println("Saldo: ", account.Balance)
 
