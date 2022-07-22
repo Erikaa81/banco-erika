@@ -15,7 +15,7 @@ func TestNewAccount(t *testing.T) {
 		got, err := NewAccount(name, cpf, pin, balance)
 
 		if got.ID == "" {
-			t.Errorf("ID cannot to be zero")
+			t.Errorf("ID cannot be empty")
 		}
 
 		if got.Name != name {
@@ -28,7 +28,7 @@ func TestNewAccount(t *testing.T) {
 
 		HashedPIN, _ := HashPIN(pin)
 		if !CheckPINHash(got.PIN, HashedPIN) {
-			t.Errorf("wnat, %v, got, %v", HashedPIN, got.PIN)
+			t.Errorf("pins do not match")
 		}
 
 		if got.Balance != balance {
@@ -36,7 +36,7 @@ func TestNewAccount(t *testing.T) {
 		}
 
 		if got.CreatedAt.IsZero() {
-			t.Errorf("createdat cannot to be zero")
+			t.Errorf("time cannot be zero")
 		}
 
 		if err != nil {
