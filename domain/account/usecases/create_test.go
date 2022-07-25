@@ -9,7 +9,7 @@ import (
 )
 
 func TestCreateAccount(t *testing.T) {
-	t.Run("should return success", func(t *testing.T) {
+	t.Run("should return successful account creation", func(t *testing.T) {
 		input := domainAccount.CreateAccountInput{
 			Name:    "Carla",
 			CPF:     "88877766555",
@@ -37,11 +37,11 @@ func TestCreateAccount(t *testing.T) {
 		}
 
 		if got.CPF != input.CPF {
-			t.Errorf("want %v, got,%v", input.CPF, got.CPF)
+			t.Errorf("want %s, got,%s", input.CPF, got.CPF)
 		}
 
-		HashedPIN, _ := entities.HashPIN(input.PIN)
-		if !entities.CheckPINHash(got.PIN, HashedPIN) {
+		hashedPIN, _ := entities.HashPIN(input.PIN)
+		if !entities.CheckPINHash(got.PIN, hashedPIN) {
 			t.Errorf("pins do not match")
 		}
 
@@ -69,7 +69,7 @@ func TestCreateAccount(t *testing.T) {
 			t.Errorf("want empty account but got: %+v", got)
 		}
 
-		if !errors.Is(err, ErrAccountCreationDenied) {
+		if !errors.Is(err, ErrCPFAlreadyExists) {
 			t.Errorf("want cpf already exists but got: %s", err)
 		}
 	})
