@@ -9,7 +9,7 @@ import (
 )
 
 func TestCreateAccount(t *testing.T) {
-	t.Run("should return successful account creation", func(t *testing.T) {
+	t.Run("should create an account and successfully return it", func(t *testing.T) {
 		input := domainAccount.CreateAccountInput{
 			Name:    "Carla",
 			CPF:     "88877766555",
