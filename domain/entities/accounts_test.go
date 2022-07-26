@@ -26,8 +26,8 @@ func TestNewAccount(t *testing.T) {
 			t.Errorf("want, %v, got,%v", cpf, got.CPF)
 		}
 
-		HashedPIN, _ := HashPIN(pin)
-		if !CheckPINHash(got.PIN, HashedPIN) {
+		hashedPIN, _ := HashPIN(pin)
+		if !CheckPINHash(got.PIN, hashedPIN) {
 			t.Errorf("pins do not match")
 		}
 
