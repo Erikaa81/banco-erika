@@ -99,15 +99,3 @@ func TestCreateAccount(t *testing.T) {
 		}
 	})
 }
-
-type RepositoryMock struct {
-	cpfExists bool
-	storeErr  error
-}
-
-func (r RepositoryMock) CPFExists(cpf string) bool {
-	return r.cpfExists
-}
-func (r RepositoryMock) Store(account entities.Account) error {
-	return r.storeErr
-}
