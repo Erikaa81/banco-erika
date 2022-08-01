@@ -7,17 +7,17 @@ import (
 )
 
 var (
-	ErrEmptyId = errors.New("the id was not filled")
+	ErrEmptyID = errors.New("the id was not filled")
 )
 
-func (a Account) GetAccount(id string) (entities.Account, error) {
+func (a Account) Get(id string) (entities.Account, error) {
 	if id == "" {
-		return entities.Account{}, ErrEmptyId
+		return entities.Account{}, ErrEmptyID
 	}
 
 	account, err := a.repository.GetAccount(id)
 	if err != nil {
-		return account, err
+		return entities.Account{}, err
 	}
 	return account, nil
 }
