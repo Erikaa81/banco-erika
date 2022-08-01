@@ -8,7 +8,7 @@ import (
 )
 
 func TestAccount_List(t *testing.T) {
-	t.Run("should return accounts list successfuly", func(t *testing.T) {
+	t.Run("should successfully return account list", func(t *testing.T) {
 		account1, _ := entities.NewAccount("erika", "22233344455", "Er5", 1000)
 		account2, _ := entities.NewAccount("Maria", "55533344455", "F35", 2000)
 
@@ -34,7 +34,7 @@ func TestAccount_List(t *testing.T) {
 		}
 	})
 
-	t.Run("should return list empty successfuly", func(t *testing.T) {
+	t.Run("should successfully return an empty list", func(t *testing.T) {
 		a := Account{
 			repository: RepositoryMock{
 				accountList: []entities.Account{},
@@ -52,7 +52,7 @@ func TestAccount_List(t *testing.T) {
 		}
 
 	})
-	t.Run("should retur error when listing", func(t *testing.T) {
+	t.Run("should return error when listing", func(t *testing.T) {
 		ErrList := errors.New("error when listing")
 
 		a := Account{
@@ -63,7 +63,7 @@ func TestAccount_List(t *testing.T) {
 		}
 		got, err := a.List()
 		if len(got) != 0 {
-			t.Errorf("wantede error in listing but got: %+v", got)
+			t.Errorf("wanted error while listing but got: %+v", got)
 		}
 
 		if !errors.Is(err, ErrList) {

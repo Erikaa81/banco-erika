@@ -8,18 +8,18 @@ import (
 )
 
 func TestAccount_GetAccount(t *testing.T) {
-	t.Run("should get account id successfuly", func(t *testing.T) {
-		account1, _ := entities.NewAccount("Paulo", "12343456785", "Er5", 10000)
+	t.Run("should successfully get account by id", func(t *testing.T) {
+		expectedAccount, _ := entities.NewAccount("Paulo", "12343456785", "Er5", 10000)
 
 		a := Account{
 			repository: RepositoryMock{
-				searchAccount: account1,
+				searchAccount: expectedAccount,
 				searchErr:     nil,
 			},
 		}
-		got, err := a.GetAccount(account1.ID)
-		if got != account1 {
-			t.Errorf("want: %v got: %v", account1, got)
+		got, err := a.Get(expectedAccount.ID)
+		if got != expectedAccount {
+			t.Errorf("want: %v got: %v", expectedAccount, got)
 
 			if err != nil {
 				t.Errorf("wanted error to be nil and got: %v", err)
@@ -27,7 +27,7 @@ func TestAccount_GetAccount(t *testing.T) {
 		}
 	})
 
-	t.Run("error when looking for id", func(t *testing.T) {
+	t.Run("should return error when looking for id at repository", func(t *testing.T) {
 		ErrSearch := errors.New("error when looking for account")
 		want := entities.Account{}
 
@@ -37,7 +37,7 @@ func TestAccount_GetAccount(t *testing.T) {
 				searchErr:     ErrSearch,
 			},
 		}
-		got, err := a.GetAccount("")
+		got, err := a.Get("")
 		if got != want {
 			t.Errorf("want: %v, got: %v", want, got)
 
@@ -47,7 +47,7 @@ func TestAccount_GetAccount(t *testing.T) {
 		}
 	})
 
-	t.Run("should return error empty id", func(t *testing.T) {
+	t.Run("should return error when empty id is informed", func(t *testing.T) {
 		want := entities.Account{}
 
 		a := Account{
@@ -56,12 +56,12 @@ func TestAccount_GetAccount(t *testing.T) {
 				searchErr:     nil,
 			},
 		}
-		got, err := a.GetAccount("")
+		got, err := a.Get("")
 		if got != want {
 			t.Errorf("want: %v, got :%v", want, got)
 		}
-		if !errors.Is(err, ErrEmptyId) {
-			t.Errorf("expected err %s and got %s", ErrEmptyId, err)
+		if !errors.Is(err, ErrEmptyID) {
+			t.Errorf("expected err %s and got %s", ErrEmptyID, err)
 		}
 	})
 }
