@@ -8,7 +8,7 @@ import (
 	"github.com/Erikaa81/banco-erika/domain/entities"
 )
 
-func TestCreateAccount(t *testing.T) {
+func TestCreate(t *testing.T) {
 	t.Run("should create an account and successfully return it", func(t *testing.T) {
 		input := domainAccount.CreateAccountInput{
 			Name:    "Carla",
@@ -23,7 +23,7 @@ func TestCreateAccount(t *testing.T) {
 			},
 		}
 
-		got, err := a.CreateAccount(input)
+		got, err := a.Create(input)
 		if err != nil {
 			t.Errorf("wanted error to be nil but got: %s", err)
 		}
@@ -63,7 +63,7 @@ func TestCreateAccount(t *testing.T) {
 			},
 		}
 
-		got, err := a.CreateAccount(c)
+		got, err := a.Create(c)
 		want := entities.Account{}
 		if got != want {
 			t.Errorf("want empty account but got: %+v", got)
@@ -88,7 +88,7 @@ func TestCreateAccount(t *testing.T) {
 				storeErr:  errStore,
 			},
 		}
-		got, err := a.CreateAccount(c)
+		got, err := a.Create(c)
 		want := entities.Account{}
 		if got != want {
 			t.Errorf("want empty account but got: %+v", got)

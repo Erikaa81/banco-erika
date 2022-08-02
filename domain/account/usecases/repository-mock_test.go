@@ -21,6 +21,6 @@ func (r RepositoryMock) Store(account entities.Account) error {
 func (r RepositoryMock) List() ([]entities.Account, error) {
 	return r.accountList, r.listErr
 }
-func (r RepositoryMock) GetAccount(id string) (entities.Account, error){
+func (r RepositoryMock) Get(id string) (entities.Account, error){
 	return r.searchAccount, r.searchErr
 }
