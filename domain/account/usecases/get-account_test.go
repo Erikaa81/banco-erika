@@ -42,7 +42,7 @@ func TestAccount_GetAccount(t *testing.T) {
 			t.Errorf("want: %v, got: %v", want, got)
 
 			if !errors.Is(err, ErrSearch) {
-				t.Errorf("expected err%s, and received: %s", ErrSearch, err)
+				t.Errorf("expected err %s, and received: %s", ErrSearch, err)
 			}
 		}
 	})
