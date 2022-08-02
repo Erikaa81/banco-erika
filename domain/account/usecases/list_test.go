@@ -11,22 +11,21 @@ func TestAccount_List(t *testing.T) {
 	t.Run("should successfully return account list", func(t *testing.T) {
 		account1, _ := entities.NewAccount("erika", "22233344455", "Er5", 1000)
 		account2, _ := entities.NewAccount("Maria", "55533344455", "F35", 2000)
+		account3, _ := entities.NewAccount("Paula", "3333338855", "E43", 3000)
 
-		want := []entities.Account{account1, account2}
+		want := []entities.Account{account1, account2, account3}
 		a := Account{
 			repository: RepositoryMock{
 				accountList: want,
 				listErr:     nil,
 			},
 		}
+
 		got, err := a.List()
-
-		if got[0] != account1 {
-			t.Errorf("want: %v, got: %v", account1, got[0])
-		}
-
-		if got[1] != account2 {
-			t.Errorf("want: %v, got: %v", account2, got[1])
+		for i, v := range got {
+			if want[i] != v {
+				t.Errorf("want:%+v got%+v", want[i], got[i])
+			}
 		}
 
 		if err != nil {
