@@ -15,7 +15,7 @@ func (a Account) Get(id string) (entities.Account, error) {
 		return entities.Account{}, ErrEmptyID
 	}
 
-	account, err := a.repository.GetAccount(id)
+	account, err := a.repository.Get(id)
 	if err != nil {
 		return entities.Account{}, err
 	}

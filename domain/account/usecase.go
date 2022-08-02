@@ -7,7 +7,7 @@ import (
 type Usecase interface {
 	CreateAccount(CreateAccountInput) (entities.Account, error)
 	List() ([]entities.Account, error)
-	GetAccount(string)(entities.Account, error)
+	Get(string)(entities.Account, error)
 }
 
 type CreateAccountInput struct {
