@@ -11,7 +11,7 @@ var (
 	ErrCPFAlreadyExists = errors.New("there is already an account for this cpf")
 )
 
-func (a Account) CreateAccount(input account.CreateAccountInput) (entities.Account, error) {
+func (a Account) Create(input account.CreateAccountInput) (entities.Account, error) {
 	if a.repository.CPFExists(input.CPF) {
 		return entities.Account{}, ErrCPFAlreadyExists
 	}

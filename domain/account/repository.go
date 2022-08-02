@@ -7,4 +7,6 @@ import (
 type Repository interface {
 	CPFExists(string) bool
 	Store(entities.Account) error
+	List() ([]entities.Account, error)
+	Get(string) (entities.Account, error)
 }
